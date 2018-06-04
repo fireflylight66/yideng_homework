@@ -1,6 +1,9 @@
 class PraiseButton {
-  doLike(value = 0) {
+  increase(value) {
     return value + 1;
+  }
+  decrease(value) {
+    return value - 1;
   }
 }
 

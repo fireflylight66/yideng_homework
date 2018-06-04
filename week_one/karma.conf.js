@@ -2,8 +2,6 @@
 // Generated on Sun Jun 03 2018 03:29:28 GMT+0800 (CST)
 
 const webpackConfig = require("./webpack.config.js");
-require("./node_modules/babel-polyfill/lib/index");
-const js = "./src/**/*.js";
 module.exports = function(config) {
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -15,7 +13,6 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      // "./node_modules/requirejs/require.js",
       "./node_modules/babel-polyfill/dist/polyfill.min.js",
       "src/**/*.js",
       "tests/**/*.test.js"
@@ -29,22 +26,14 @@ module.exports = function(config) {
     preprocessors: {
       "src/**/*.js": ["babel"],
       "tests/**/*.js": ["babel"]
-      // [js]: ["babel"]
     },
-    // webpack: webpackConfig,
-    // babelPreprocessor: {
-    //   options: {
-    //     presets: ["env"],
-    //     plugins: ["transform-es2015-modules-amd"],
-    //     sourceMap: "inline"
-    //   },
-    //   filename: function(file) {
-    //     return file.originalPath.replace(/\.js$/, ".es5.js");
-    //   },
-    //   sourceFileName: function(file) {
-    //     return file.originalPath;
-    //   }
-    // },
+    babelPreprocessor: {
+      options: {
+        presets: ["env"],
+        plugins: ["transform-es2015-modules-umd", "transform-class-properties"],
+        sourceMap: true
+      }
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

@@ -45,11 +45,11 @@ export default class Thumb extends PraiseButton {
     this.render();
   };
   like() {
-    this.value++;
+    this.value = this.increase(this.value);
     this.likeStatus = true;
   }
   unlike() {
-    this.value--;
+    this.value = this.decrease(this.value);
     this.likeStatus = false;
   }
 }
