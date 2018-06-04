@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <div class="btn"></div>
+  <div class="btn"></div>
+  <div class="btn"></div>
+  <div class="btn"></div>
+  <div class="btn"></div>
+  <div class="btn"></div>
+  <div class="btn"></div>
+
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/systemjs/0.21.3/system-production.js"></script>
+  <script>
+    SystemJS.import('/js/components/Thumb.js').then(function (t) {
+      // var btn = document.querySelector('#btn')
+      const Thumb = t.default
+
+      // new Thumb('#btn', {
+      //   value: 12, onClick: function (btn) {
+      //     btn.likeStatus ? btn.unlike() : btn.like()
+      //   }
+      // })
+
+      // 注册到jquery
+      $.fn.Thumb = function (_conf) {
+        _conf = _conf || { value: 0 }
+
+        return this.each(function (index, el) {
+          new Thumb(el, {
+            value: _conf.value, onClick: _conf.onClick
+          })
+
+          return el
+        })
+      }
+
+
+      $('.btn').Thumb({ value: 11 })
+
+    });
+  </script>
+</body>
+
+</html>
